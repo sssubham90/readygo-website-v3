@@ -23,20 +23,20 @@ const httpServer = http.createServer(app)
 //var Feedback = mongoose.model("Feedback", feedbackSchema);
 
 
-app.all(/.*/, function(req, res, next) {
-    var host = req.header("host")
-    if (req.protocol === 'http') {
-        if (host.match(/^www\..*/i)) {
-            next();
-        } else {
-            res.redirect(301, "http://www." + host);
-        }
-    } else if (host.match(/^www\..*/i)) {
-        res.redirect(301, "http://" + host);
-    } else {
-        res.redirect(301, "http://www." + host);
-    }
-});
+// app.all(/.*/, function(req, res, next) {
+//     var host = req.header("host")
+//     if (req.protocol === 'http') {
+//         if (host.match(/^www\..*/i)) {
+//             next();
+//         } else {
+//             res.redirect(301, "http://www." + host);
+//         }
+//     } else if (host.match(/^www\..*/i)) {
+//         res.redirect(301, "http://" + host);
+//     } else {
+//         res.redirect(301, "http://www." + host);
+//     }
+// });
 app.get('/*', function(req, res, next) {
     if (req.url.indexOf("/images/") === 0 || req.url.indexOf("/styles/") === 0 || req.url.indexOf("/scripts/") === 0 || req.url.indexOf("/fonts/") === 0) {
         res.setHeader("Cache-Control", "public, max-age=2592000");
@@ -59,12 +59,12 @@ app.get('/Robots.txt', (req, res, next) => res.sendFile(__dirname + '/public/Rob
 app.post('/contact-us', (req, res) => {
     //var myData = new Feedback(req.body);
     //myData.save()
-      //  .then(item => {
-            res.send("Thank you for contacting us. We will get back to you soon.");
-      //  })
-      //  .catch(err => {
-      //      res.status(400).send("Unable to send your request. Please give a call on 9178175969.");
-      //  });
+    //  .then(item => {
+    res.send("Thank you for contacting us. We will get back to you soon.");
+    //  })
+    //  .catch(err => {
+    //      res.status(400).send("Unable to send your request. Please give a call on 9178175969.");
+    //  });
 })
 httpServer.listen(80, () => {
     console.log('80')
