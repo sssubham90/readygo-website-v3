@@ -1,12 +1,7 @@
 const express = require('express')
 const compression = require('compression')
-const fs = require('fs')
-const http = require('http')
-const https = require('https')
-const mongoose = require("mongoose")
 const bodyParser = require('body-parser')
 const app = express()
-const httpServer = http.createServer(app)
 
 
 //mongoose.Promise = global.Promise;
@@ -52,15 +47,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }))
-app.get('/', (req, res) => res.send(index.html))
+app.get('/', (req, res) => res.send(index.html));
 app.get('/sitemap.xml', (req, res, next) => res.sendFile(__dirname + '/public/sitemap.xml'));
 app.get('/Robots.txt', (req, res, next) => res.sendFile(__dirname + '/public/Robots.txt'));
 
 app.post('/contact-us', (req, res) => {
+    res.send("Thank you for contacting us. We will get back to you soon.");
     //var myData = new Feedback(req.body);
     //myData.save()
     //  .then(item => {
-    res.send("Thank you for contacting us. We will get back to you soon.");
+    //
     //  })
     //  .catch(err => {
     //      res.status(400).send("Unable to send your request. Please give a call on 9178175969.");
