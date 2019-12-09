@@ -62,6 +62,6 @@ app.post('/contact-us', (req, res) => {
     //      res.status(400).send("Unable to send your request. Please give a call on 9178175969.");
     //  });
 })
-app.listen(80, () => {
-    console.log('80')
+app.listen(process.env.PORT, () => {
+    console.log(`${process.env.PORT}`);
 })
